@@ -33,3 +33,9 @@ li a {
 .active {
     background-color: #4CAF50;
 }
+
+#myCanvasHD {
+    position: absolute;
+    border:0px solid #d3d3d3;
+    width: 100%;
+}
