@@ -1,15 +1,17 @@
 var canvas = document.getElementById("myCanvasHD");
 var ctx = canvas.getContext("2d");
-var x = canvas.width/2;
-var y = canvas.height-30;
+
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
 var dx = 2;
 var dy = -2;
 var brickRowCount = 6;
-var brickColumnCount = 6;
-var brickWidth = 150;
-var brickHeight = 40;
-var brickPadding = 3;
-var brickOffsetTop = 242;
+var brickColumnCount = 7;
+var brickWidth = 217;
+var brickHeight = 45;
+var brickPadding = 2;
+var brickOffsetTop = 471;
 var brickOffsetLeft = 3;
 
 var bricks = [];
@@ -20,12 +22,16 @@ for(var c=0; c<brickColumnCount; c++) {
     }
 }
 
+//This function creates an ellipse
 function drawHumptyDumpty() {
     ctx.beginPath();
-    ctx.ellipse(100, 100, 20, 45, Math.PI / 30, 0, 2 * Math.PI);
+    ctx.ellipse(750, 400, 85, 110, Math.PI / 30, 0, 2 * Math.PI);
+    ctx.fillStyle = '#FAE5D3';
+    ctx.fill();
     ctx.stroke();
 }
 
+//This function constructs the brick walls
 function drawBricks() {
     for(var c=0; c<brickColumnCount; c++) {
         for(var r=0; r<brickRowCount; r++) {
@@ -43,14 +49,11 @@ function drawBricks() {
 }
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
     drawHumptyDumpty();
 
 }
 
 var interval = setInterval(draw, 10);
-
-
 
 
