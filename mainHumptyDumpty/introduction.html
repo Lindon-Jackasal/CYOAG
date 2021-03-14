@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../myCSS/myStyle.css" type="text/css"/>
     <meta charset="UTF-8">
-    <title>Introduction</title>
+    <title>Humpty Dumpty</title>
 </head>
 <body>
+
+<ul>
+    <li><button id="btnMenu" onclick="showOrHideMenu()">MAIN MENU</button></li>
+</ul>
+
+<div id="mainMenu">
+    <h1>MAIN MENU</h1>
+    <p>This is some text in a div element.</p>
+    <button id="btnCloseMenu" onclick="showOrHideMenu()">Cancel</button>
+    <button class="quitBtn" onclick="document.location='../index.html'">Quit Game</button>
+</div>
+
+
+<script>
+   window.onload = function(){
+        document.getElementById("mainMenu").style.display='none';
+   };
+
+    function showOrHideMenu() {
+     var m = document.getElementById("mainMenu");
+     var c = document.getElementById("btnMenu");
+      if (m.style.display === "none") {
+            m.style.display = "block";
+            c.style.background = "white";
+            c.style.color = "black";
+      } else {
+            m.style.display = "none";
+            c.style.background = "#4CAF50";
+            c.style.color = "white";
+      }
+   }
+
+</script>
 
 </body>
 </html>

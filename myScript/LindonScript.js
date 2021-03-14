@@ -22,15 +22,6 @@ for(var c=0; c<brickColumnCount; c++) {
     }
 }
 
-//This function creates an ellipse
-function drawHumptyDumpty() {
-    ctx.beginPath();
-    ctx.ellipse(750, 400, 85, 110, Math.PI / 30, 0, 2 * Math.PI);
-    ctx.fillStyle = '#FAE5D3';
-    ctx.fill();
-    ctx.stroke();
-}
-
 //This function constructs the brick walls
 function drawBricks() {
     for(var c=0; c<brickColumnCount; c++) {
@@ -48,10 +39,54 @@ function drawBricks() {
     }
 }
 
+//This function creates an ellipse/Humpty Dumpty
+function drawHumptyDumpty() {
+    //Draw an ellipse
+    ctx.beginPath();
+    ctx.ellipse(750, 400, 85, 110, Math.PI / 30, 0, 2 * Math.PI);
+    ctx.fillStyle = '#FAE5D3';
+    ctx.fill();
+    ctx.stroke();
+
+   //First Eyebrow
+   ctx.beginPath();
+   ctx.lineWidth = 1;
+   ctx.moveTo(740, 380);
+   ctx.quadraticCurveTo(720, 340, 690, 380);
+   ctx.stroke();
+   ctx.restore();
+
+   //Second Eyebrow
+   ctx.beginPath();
+   ctx.lineWidth = 1;
+   ctx.moveTo(810, 380);
+   ctx.quadraticCurveTo(790, 340, 770, 380);
+   ctx.stroke();
+   ctx.restore();
+
+/*  ctx.beginPath();
+    ctx.arc(750, 420, 85, 25.1, 1 * Math.PI);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+*/
+}
+
+function drawClouds() {
+   ctx.beginPath();
+   ctx.lineWidth = 1;
+   ctx.moveTo(400, 280);
+   ctx.quadraticCurveTo(380, 340, 390, 280);
+   ctx.stroke();
+   ctx.restore();
+
+}
+
 function draw() {
     drawBricks();
     drawHumptyDumpty();
-
+    drawClouds();
 }
 
 var interval = setInterval(draw, 10);
