@@ -18,6 +18,16 @@
     <button class="quitBtn" onclick="document.location='../index.html'">Quit Game</button>
 </div>
 
+<div id="playerName">
+    <h1>Player's Name:</h1>
+
+        <input autocomplete="off" type="text" id="pname" name="pname" placeholder="Enter Your Name Here...">
+        <button class="btnCon" onclick="changeText()">Try it</button>
+</div>
+
+<div id="welcome">
+    <h1 id="namep" onclick="changeText()"></h1>
+</div>
 
 <script>
    window.onload = function(){
@@ -36,6 +46,18 @@
             c.style.background = "#4CAF50";
             c.style.color = "white";
       }
+   }
+
+   function changeText() {
+        var input = document.getElementById("pname").value;
+        var pn = document.getElementById("playerName");
+        var wel = document.getElementById("welcome");
+
+        document.getElementById("namep").innerHTML = "Welcome to Humpty Dumpty, " + input + "!";
+
+        pn.style.display = "none";
+        wel.style.display = "block";
+
    }
 
 </script>
