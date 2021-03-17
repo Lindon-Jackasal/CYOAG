@@ -1,8 +1,10 @@
 var canvas = document.getElementById("myCanvasHD");
 var ctx = canvas.getContext("2d");
 
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+       //canvas.width = canvas.offsetWidth;
+       //canvas.height = canvas.offsetHeight;
+       canvas.width = 1540;
+       canvas.height = 760;
 
 var dx = 2;
 var dy = -2;
@@ -87,8 +89,11 @@ function draw() {
     drawBricks();
     drawHumptyDumpty();
     drawClouds();
+
 }
 
+
 var interval = setInterval(draw, 10);
+
 
 
