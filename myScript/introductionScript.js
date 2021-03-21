@@ -1,3 +1,6 @@
+var divPlayerName = true;
+var myIntroCanvas = false;
+
 window.onload = function(){
         document.getElementById("mainMenu").style.display='none';
 };
@@ -20,7 +23,14 @@ function showOrHideMenu() {
             c.style.background = "white";
             c.style.color = "black";
 
-      } else {
+      }
+      else if (myIntroCanvas === true) {
+            m.style.display = "none";
+            myIntro.style.display = "block";
+            c.style.background = "#4CAF50";
+            c.style.color = "white";
+      }
+      else if (divPlayerName === true) {
             m.style.display = "none";
             pn.style.display = "block";
             c.style.background = "#4CAF50";
@@ -38,6 +48,8 @@ function changeText() {
         if (input.trim() === "") {
             inputextBox.title = "Required!";
             inputextBox.style.border = "4px solid red";
+            divPlayerName = true;
+            myIntroCanvas = false;
 
         } else {
             document.getElementById("namep").innerHTML = "Welcome to Humpty Dumpty, " + input + "!";
@@ -45,6 +57,8 @@ function changeText() {
             btn1.style.display = "none";
             btn2.style.display = "block";
             hdw.style.display = "block";
+            divPlayerName = true;
+            myIntroCanvas = false;
 
         }
 
@@ -58,6 +72,8 @@ function showmyIntroductionCanvas() {
         if (pN.style.display === "block") {
             pN.style.display = "none";
             mI.style.display = "block";
+            divPlayerName = false;
+            myIntroCanvas = true;
         }
 
 }
