@@ -3,6 +3,7 @@ var ctx = canvas.getContext("2d");
 
        //canvas.width = canvas.offsetWidth;
        //canvas.height = canvas.offsetHeight;
+       //The below code is required in order to fix the issue with the resizing on reload
        canvas.width = 1540;
        canvas.height = 760;
 

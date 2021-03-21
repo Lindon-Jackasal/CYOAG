@@ -46,6 +46,9 @@ li a:hover:not(.active) {
     top: 0;
     z-index: -1;
     border:3px solid #d3d3d3;
+    min-width: 800px;
+    min-height: 500px;
+    display: inline-block; /*add inline-block to allow the min-width & min-height to function properly*/
 
 }
 
@@ -189,7 +192,10 @@ input[type=text] {
     left: 0;
     top: 0;
     z-index: -1;
-    border:3px solid #d3d3d3;
+    /*border:3px solid #d3d3d3;*/
     display: none;
+    min-width: 50%;
+    min-width: 800px;
+    min-height: 500px;
 
 }

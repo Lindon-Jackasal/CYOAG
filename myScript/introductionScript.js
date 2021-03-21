@@ -71,7 +71,7 @@ function showmyIntroductionCanvas() {
 
         if (pN.style.display === "block") {
             pN.style.display = "none";
-            mI.style.display = "block";
+            mI.style.display = "inline-block";
             divPlayerName = false;
             myIntroCanvas = true;
         }
