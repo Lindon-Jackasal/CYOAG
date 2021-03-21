@@ -18,53 +18,19 @@
     <button class="quitBtn" onclick="document.location='../index.html'">Quit Game</button>
 </div>
 
-<div id="playerName">
-    <h1>Player's Name:</h1>
+<div id="playerName" style="display: block;">
+    <h1 id="namep">Player's Name:</h1>
         <input autocomplete="off" type="text" id="pname" name="pname" placeholder="Enter Your Name Here...">
-        <button class="btnCon" onclick="changeText()">Continue</button>
+        <button id="btnCon" onclick="changeText()">Continue</button>
+        <img id="hdwel" src="../myImages/humptydumwelcome.jpg" alt="Humpty Dumpty" width="300" height="280" style="display: none; margin-left: 25%;">
+        <button id="btnC2" onclick="showmyIntroductionCanvas()">Coontinue</button>
 </div>
 
-<div id="welcome">
-    <h1 id="namep" onclick="changeText()"></h1>
-    <button class="btnCon" >Continue</button>
+<canvas id="myIntroduction">
+    Your browser does not support the HTML canvas tag.
+</canvas>
 
-</div>
-
-<script>
-   window.onload = function(){
-        document.getElementById("mainMenu").style.display='none';
-   };
-
-    function showOrHideMenu() {
-     var m = document.getElementById("mainMenu");
-     var c = document.getElementById("btnMenu");
-      if (m.style.display === "none") {
-            m.style.display = "block";
-            c.style.background = "white";
-            c.style.color = "black";
-      } else {
-            m.style.display = "none";
-            c.style.background = "#4CAF50";
-            c.style.color = "white";
-      }
-   }
-
-   function changeText() {
-        var input = document.getElementById("pname").value;
-        var inputextBox = document.getElementById("pname");
-        var pn = document.getElementById("playerName");
-        var wel = document.getElementById("welcome");
-
-        if (input.trim() === "") {
-            inputextBox.title = "Required!";
-            inputextBox.style.border = "4px solid red";
-        } else {
-            document.getElementById("namep").innerHTML = "Welcome to Humpty Dumpty, " + input + "!";
-            pn.style.display = "none";
-            wel.style.display = "block";
-        }
-   }
-
+<script src="../myScript/introductionScript.js">
 </script>
 
 </body>

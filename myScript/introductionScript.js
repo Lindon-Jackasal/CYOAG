@@ -1,4 +1,72 @@
-var canvas = document.getElementById("myCanvasHD");
+window.onload = function(){
+        document.getElementById("mainMenu").style.display='none';
+};
+
+function showOrHideMenu() {
+     var m = document.getElementById("mainMenu");
+     var pn = document.getElementById("playerName");
+     var c = document.getElementById("btnMenu");
+     var myIntro = document.getElementById("myIntroduction");
+
+      if (m.style.display === "none" && pn.style.display === "block") {
+            pn.style.display = "none";
+            m.style.display = "block";
+            c.style.background = "white";
+            c.style.color = "black";
+      }
+      else if (m.style.display === "none" && myIntro.style.display === "block") {
+            myIntro.style.display = "none";
+            m.style.display = "block";
+            c.style.background = "white";
+            c.style.color = "black";
+
+      } else {
+            m.style.display = "none";
+            pn.style.display = "block";
+            c.style.background = "#4CAF50";
+            c.style.color = "white";
+      }
+   }
+
+function changeText() {
+        var input = document.getElementById("pname").value;
+        var inputextBox = document.getElementById("pname");
+        var btn1 = document.getElementById("btnCon");
+        var btn2 = document.getElementById("btnC2");
+        var hdw = document.getElementById("hdwel");
+
+        if (input.trim() === "") {
+            inputextBox.title = "Required!";
+            inputextBox.style.border = "4px solid red";
+
+        } else {
+            document.getElementById("namep").innerHTML = "Welcome to Humpty Dumpty, " + input + "!";
+            inputextBox.style.display = "none";
+            btn1.style.display = "none";
+            btn2.style.display = "block";
+            hdw.style.display = "block";
+
+        }
+
+}
+
+function showmyIntroductionCanvas() {
+
+        var mI = document.getElementById("myIntroduction");
+        var pN = document.getElementById("playerName");
+
+        if (pN.style.display === "block") {
+            pN.style.display = "none";
+            mI.style.display = "block";
+        }
+
+}
+
+
+//_______________________________________________________________________//
+
+
+var canvas = document.getElementById("myIntroduction");
 var ctx = canvas.getContext("2d");
 
        //canvas.width = canvas.offsetWidth;
