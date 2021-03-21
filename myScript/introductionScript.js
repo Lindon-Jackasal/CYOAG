@@ -17,7 +17,7 @@ function showOrHideMenu() {
             c.style.background = "white";
             c.style.color = "black";
       }
-      else if (m.style.display === "none" && myIntro.style.display === "block") {
+      else if (m.style.display === "none" && myIntro.style.display === "inline-block") {
             myIntro.style.display = "none";
             m.style.display = "block";
             c.style.background = "white";
@@ -26,7 +26,7 @@ function showOrHideMenu() {
       }
       else if (myIntroCanvas === true) {
             m.style.display = "none";
-            myIntro.style.display = "block";
+            myIntro.style.display = "inline-block";
             c.style.background = "#4CAF50";
             c.style.color = "white";
       }
