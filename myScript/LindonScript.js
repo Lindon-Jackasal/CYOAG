@@ -17,10 +17,10 @@ var dx = 1.2;
 var dy = 0;
 var brickRowCount = 6;
 var brickColumnCount = 7;
-var brickWidth = 218;
-var brickHeight = 45;
+var brickWidth = 219;
+var brickHeight = 46;
 var brickPadding = 2;
-var brickOffsetTop = 471;
+var brickOffsetTop = 475;
 var brickOffsetLeft = 0;
 var bricks = [];
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -46,6 +46,7 @@ function drawBricks() {
             ctx.rect(brickX, brickY, brickWidth, brickHeight);
             ctx.fillStyle = "#bd5858";
             ctx.fill();
+            ctx.stroke();
             ctx.closePath();
         }
     }
@@ -64,18 +65,65 @@ function drawHumptyDumpty() {
    //First Eyebrow
    ctx.beginPath();
    ctx.lineWidth = 1;
-   ctx.moveTo(740, 380);
-   ctx.quadraticCurveTo(720, 340, 690, 380);
+   ctx.moveTo(740, 370);
+   ctx.quadraticCurveTo(720, 330, 690, 370);
    ctx.stroke();
    ctx.restore();
 
    //Second Eyebrow
    ctx.beginPath();
    ctx.lineWidth = 1;
-   ctx.moveTo(810, 380);
-   ctx.quadraticCurveTo(790, 340, 770, 380);
+   ctx.moveTo(810, 370);
+   ctx.quadraticCurveTo(790, 330, 770, 370);
    ctx.stroke();
    ctx.restore();
+
+   //Eyes
+       ctx.beginPath();
+       ctx.arc(790, 390, 15, 0, 2 * Math.PI);
+       ctx.fillStyle = "white";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       ctx.beginPath();
+       ctx.arc(715, 390, 15, 0, 2 * Math.PI);
+       ctx.fillStyle = "white";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       //Pupils
+       ctx.beginPath();
+       ctx.arc(717, 398, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "black";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       ctx.beginPath();
+       ctx.arc(792, 398, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "black";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       //Nose
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.moveTo(750, 400);
+        ctx.quadraticCurveTo(760, 420, 740, 425);
+        ctx.stroke();
+        ctx.restore();
+
+       //Mouth
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.moveTo(780, 430);
+        ctx.quadraticCurveTo(748, 470, 710, 430);
+        ctx.stroke();
+        ctx.restore();
+
 
    requestAnimationFrame(drawHumptyDumpty);
 }
