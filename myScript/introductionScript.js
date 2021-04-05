@@ -1,9 +1,21 @@
 var divPlayerName = true;
 var myIntroCanvas = false;
+var choiceOne = false;
+var choiceTwo = false;
+var choiceThree = false;
 
 window.onload = function(){
         document.getElementById("mainMenu").style.display='none';
 };
+
+//Transition Effect on the Body of the page on load
+document.body.className = 'fade';
+
+document.addEventListener("DOMContentLoaded", () => {
+      window.setTimeout(function() {
+        document.body.className = '';
+      }, 230);
+});
 
 function showOrHideMenu() {
      var m = document.getElementById("mainMenu");
@@ -78,12 +90,59 @@ function showmyIntroductionCanvas() {
 
 }
 
+function fChoice() {
+    var btnS = document.getElementById("btnSkipping");
+    var btnL = document.getElementById("btnListen");
+    var btnF = document.getElementById("btnForest");
+    var btnCC = document.getElementById("btnContinue");
+
+        btnS.style.display = "none";
+        btnL.style.display = "none";
+        btnF.style.display = "none";
+        btnCC.style.display = "inline-block";
+        btnCC.onclick = function() {
+            location.href = 'mainHumptyDumpty/choiceOne/choiceOne.html';
+        }
+        choiceOne = true;
+}
+
+function sChoice() {
+    var btnS = document.getElementById("btnSkipping");
+    var btnL = document.getElementById("btnListen");
+    var btnF = document.getElementById("btnForest");
+    var btnCC = document.getElementById("btnContinue");
+
+        btnS.style.display = "none";
+        btnL.style.display = "none";
+        btnF.style.display = "none";
+        btnCC.style.display = "inline-block";
+        btnCC.onclick = function() {
+            location.href = 'mainHumptyDumpty/choiceTwo/choiceTwo.html';
+        }
+        choiceTwo = true;
+}
+
+function tChoice() {
+    var btnS = document.getElementById("btnSkipping");
+    var btnL = document.getElementById("btnListen");
+    var btnF = document.getElementById("btnForest");
+    var btnCC = document.getElementById("btnContinue");
+
+        btnS.style.display = "none";
+        btnL.style.display = "none";
+        btnF.style.display = "none";
+        btnCC.style.display = "inline-block";
+        btnCC.onclick = function() {
+            location.href = 'mainHumptyDumpty/choiceThree/choiceThree.html';
+        }
+        choiceThree = true;
+}
+
 //_______________________________________________________________________//
 
 
 var canvas = document.getElementById("myIntroduction");
 var ctx = canvas.getContext("2d");
-var clickFC = false;
 
        //canvas.width = canvas.offsetWidth;
        //canvas.height = canvas.offsetHeight;
@@ -91,8 +150,8 @@ var clickFC = false;
        canvas.width = 1540;
        canvas.height = 760;
 
-var xg = 600;
-var yg = 400;
+var xg = 250;
+var yg = 550;
 var x = -150;
 var y = 100;
 var xb = -950;
@@ -138,75 +197,27 @@ function drawGround() {
        ctx.stroke();
        ctx.closePath();
 
+       //Stones
+       ctx.beginPath();
+       ctx.arc(700, 720, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "#BF8E02";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       ctx.beginPath();
+       ctx.arc(690, 725, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "#BF8E02";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
 
     requestAnimationFrame(drawGround);
 }
 
 //This function creates an ellipse/Humpty Dumpty
 function drawHumptyDumpty() {
-
-   //First Eyebrow
-   ctx.beginPath();
-   ctx.lineWidth = 1;
-   ctx.moveTo(740, 370);
-   ctx.quadraticCurveTo(720, 330, 690, 370);
-   ctx.stroke();
-   ctx.restore();
-
-   //Second Eyebrow
-   ctx.beginPath();
-   ctx.lineWidth = 1;
-   ctx.moveTo(810, 370);
-   ctx.quadraticCurveTo(790, 330, 770, 370);
-   ctx.stroke();
-   ctx.restore();
-
-   //Eyes
-       ctx.beginPath();
-       ctx.arc(790, 390, 15, 0, 2 * Math.PI);
-       ctx.fillStyle = "white";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-       ctx.beginPath();
-       ctx.arc(715, 390, 15, 0, 2 * Math.PI);
-       ctx.fillStyle = "white";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-       //Pupils
-       ctx.beginPath();
-       ctx.arc(717, 398, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "black";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-       ctx.beginPath();
-       ctx.arc(792, 398, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "black";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-       //Nose
-        ctx.beginPath();
-        ctx.lineWidth = 1;
-        ctx.moveTo(750, 400);
-        ctx.quadraticCurveTo(760, 420, 740, 425);
-        ctx.stroke();
-        ctx.restore();
-
-       //Mouth
-        ctx.beginPath();
-        ctx.lineWidth = 1;
-        ctx.moveTo(780, 430);
-        ctx.quadraticCurveTo(748, 470, 710, 430);
-        ctx.stroke();
-        ctx.restore();
-
     //Draw an ellipse
     ctx.beginPath();
     ctx.moveTo(xg, yg);
@@ -215,10 +226,73 @@ function drawHumptyDumpty() {
     ctx.fill();
     //ctx.stroke();
 
+   //First Eyebrow
+   ctx.beginPath();
+   ctx.lineWidth = 1;
+   ctx.moveTo(xg - 35, yg - 45);
+   ctx.quadraticCurveTo(xg - 10, yg - 80, xg + 5, yg - 45);
+   ctx.stroke();
+   ctx.restore();
 
-            if (clickFC === true) {
-                setTimeout(function(){xg = 930;
-                }, 1500);
+   //Second Eyebrow
+   ctx.beginPath();
+   ctx.lineWidth = 1;
+   ctx.moveTo(xg + 75, yg - 45);
+   ctx.quadraticCurveTo(xg + 55, yg - 80, xg + 35, yg - 45);
+   ctx.stroke();
+   ctx.restore();
+
+       //Eyes
+       ctx.beginPath();
+       ctx.arc(xg - 15, yg - 25, 15, 0, 2 * Math.PI);
+       ctx.fillStyle = "white";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       ctx.beginPath();
+       ctx.arc(xg + 55, yg - 25, 15, 0, 2 * Math.PI);
+       ctx.fillStyle = "white";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       //Pupils
+       ctx.beginPath();
+       ctx.arc(xg - 7, yg - 25, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "black";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       ctx.beginPath();
+       ctx.arc(xg + 63, yg - 25, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "black";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       //Nose
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.moveTo(xg + 20, yg - 15);
+        ctx.quadraticCurveTo(xg + 30, yg + 10, xg + 5, yg + 15);
+        ctx.stroke();
+        ctx.restore();
+
+       //Mouth
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.moveTo(xg + 55, yg + 30);
+        ctx.quadraticCurveTo(xg + 15, yg + 55, xg - 25, yg + 30);
+        ctx.stroke();
+        ctx.restore();
+
+
+            if (choiceThree === true) {
+                setTimeout(function(){
+                xg = 930;
+                }, 1000);
 
             }
 
@@ -396,8 +470,3 @@ function draw() {
 
 requestAnimationFrame(draw);
 
-
-function firstChoice() {
-    clickFC = true;
-
-}

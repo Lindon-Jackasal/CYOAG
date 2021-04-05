@@ -1,7 +1,13 @@
 body {
     margin:0;
     cursor: url(Turquoise1.cur), auto;/* http://www.rw-designer.com/cursor-set/turquoise */
+    opacity: 1;
+    transition-duration: 1s;
+    transition-property: opacity;
+}
 
+body.fade {
+    opacity: 1;
 }
 
 ul {
@@ -197,7 +203,12 @@ input[type=text] {
     z-index: -1;
     min-width: 800px;
     min-height: 500px;
-    display: none;
+    display: inline-block;
+
+}
+
+.btnConChoice {
+   display: none;
 
 }
 
