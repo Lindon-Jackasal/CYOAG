@@ -1,147 +1,4 @@
-var divPlayerName = true;
-var myIntroCanvas = false;
-var choiceOne = false;
-var choiceTwo = false;
-var choiceThree = false;
-
-window.onload = function(){
-        document.getElementById("mainMenu").style.display='none';
-};
-
-//Transition Effect on the Body of the page on load
-document.body.className = 'fade';
-
-document.addEventListener("DOMContentLoaded", () => {
-      window.setTimeout(function() {
-        document.body.className = '';
-      }, 230);
-});
-
-function showOrHideMenu() {
-     var m = document.getElementById("mainMenu");
-     var pn = document.getElementById("playerName");
-     var c = document.getElementById("btnMenu");
-     var myIntro = document.getElementById("myIntroduction");
-
-      if (m.style.display === "none" && pn.style.display === "block") {
-            pn.style.display = "none";
-            m.style.display = "block";
-            c.style.background = "white";
-            c.style.color = "black";
-      }
-      else if (m.style.display === "none" && myIntro.style.display === "inline-block") {
-            myIntro.style.display = "none";
-            m.style.display = "block";
-            c.style.background = "white";
-            c.style.color = "black";
-
-      }
-      else if (myIntroCanvas === true) {
-            m.style.display = "none";
-            myIntro.style.display = "inline-block";
-            c.style.background = "#4CAF50";
-            c.style.color = "white";
-      }
-      else if (divPlayerName === true) {
-            m.style.display = "none";
-            pn.style.display = "block";
-            c.style.background = "#4CAF50";
-            c.style.color = "white";
-      }
-   }
-
-function changeText() {
-        var input = document.getElementById("pname").value;
-        var inputextBox = document.getElementById("pname");
-        var btn1 = document.getElementById("btnCon");
-        var btn2 = document.getElementById("btnC2");
-        var hdw = document.getElementById("hdwel");
-
-        if (input.trim() === "") {
-            inputextBox.title = "Required!";
-            inputextBox.style.border = "4px solid red";
-            divPlayerName = true;
-            myIntroCanvas = false;
-
-        } else {
-            document.getElementById("namep").innerHTML = "Welcome to Humpty Dumpty, " + input + "!";
-            inputextBox.style.display = "none";
-            btn1.style.display = "none";
-            btn2.style.display = "block";
-            hdw.style.display = "block";
-            divPlayerName = true;
-            myIntroCanvas = false;
-
-        }
-
-}
-
-function showmyIntroductionCanvas() {
-
-        var mI = document.getElementById("myIntroduction");
-        var pN = document.getElementById("playerName");
-
-        if (pN.style.display === "block") {
-            pN.style.display = "none";
-            mI.style.display = "inline-block";
-            divPlayerName = false;
-            myIntroCanvas = true;
-        }
-
-}
-
-function fChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceOne/choiceOne.html';
-        }
-        choiceOne = true;
-}
-
-function sChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceTwo/choiceTwo.html';
-        }
-        choiceTwo = true;
-}
-
-function tChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceThree/choiceThree.html';
-        }
-        choiceThree = true;
-}
-
-//_______________________________________________________________________//
-
-
-var canvas = document.getElementById("myIntroduction");
+var canvas = document.getElementById("battleTheSnake");
 var ctx = canvas.getContext("2d");
 
        //canvas.width = canvas.offsetWidth;
@@ -160,6 +17,10 @@ var xc = 1350;
 var yc = 420;
 var dx = 1.2;
 var dy = 0;
+var rightPressed = false;
+var leftPressed = false;
+var upPressed = false;
+var downPressed = false;
 var brickRowCount = 6;
 var brickColumnCount = 7;
 var brickWidth = 219;
@@ -170,7 +31,27 @@ var brickOffsetLeft = 0;
 var bricks = [];
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+                            
+document.addEventListener('keydown', keyDownHandler, false);
+document.addEventListener('keyup', keyUpHandler, false);
 
+function keyDownHandler(event) {
+    if(event.keyCode == 40) {
+    	downPressed = true;
+    }
+    else if(event.keyCode == 38) {
+    	upPressed = true;
+    }
+}
+
+function keyUpHandler(event) {
+    if(event.keyCode == 40) {
+    	downPressed = false;
+    }
+    else if(event.keyCode == 38) {
+    	upPressed = false;
+    }
+}
 
 //This function constructs the brick walls
 function drawGround() {
@@ -218,6 +99,7 @@ function drawGround() {
 
 //This function creates an ellipse/Humpty Dumpty
 function drawHumptyDumpty() {
+    
     //Draw an ellipse
     ctx.beginPath();
     ctx.moveTo(xg, yg);
@@ -288,14 +170,22 @@ function drawHumptyDumpty() {
         ctx.stroke();
         ctx.restore();
 
+    if(downPressed) {
+        yg +=2.5;
+    }
+    else if(upPressed) {
+        yg -= 2.5;
+    }
 
-            if (choiceThree === true) {
-                setTimeout(function(){
-                xg = 930;
-                }, 1000);
-
-            }
-
+    if (Math.abs(yg) <= 350) 
+    {
+        yg = 350;
+    }
+    else if (Math.abs(yg) >= 600) 
+    {
+        yg = 600;
+    }
+    
    requestAnimationFrame(drawHumptyDumpty);
 }
 
