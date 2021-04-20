@@ -208,9 +208,6 @@ function drawHumptyDumpty() {
         yg = 600;
     }
     
-    if (xo > xg && xo < ) {
-        yo = 200;
-    }
     
    requestAnimationFrame(drawHumptyDumpty);
 }
