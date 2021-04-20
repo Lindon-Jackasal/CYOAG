@@ -2,4 +2,4 @@
 
 ## Choose Your Own Adventure Game (CYOAG)
 
-https://lindon-jackasal.github.io/set08801/index.html
+https://lindon-jackasal.github.io/CYOAG/
