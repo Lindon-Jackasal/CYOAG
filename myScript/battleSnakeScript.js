@@ -1,3 +1,8 @@
+//The image needs to be preloaded, in order for canvas to draw/display it 
+var snakeImg = document.createElement('img');
+snakeImg.src = '../../myImages/snake.png';
+window.addEventListener('load', function(){ 
+
 var canvas = document.getElementById("battleTheSnake");
 var ctx = canvas.getContext("2d");
 
@@ -17,21 +22,16 @@ var xc = 1350;
 var yc = 420;
 var dx = 1.2;
 var dy = 0;
+var xo = 950;
+var yo = 510;
 var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
 var downPressed = false;
-var brickRowCount = 6;
-var brickColumnCount = 7;
-var brickWidth = 219;
-var brickHeight = 46;
-var brickPadding = 2;
-var brickOffsetTop = 475;
-var brickOffsetLeft = 0;
-var bricks = [];
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-                            
+
+/* Adapted from https://developer.mozilla.org/en-US/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard */                            
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 
@@ -51,6 +51,29 @@ function keyUpHandler(event) {
     else if(event.keyCode == 38) {
     	upPressed = false;
     }
+}
+
+function drawSnake() {
+    ctx.drawImage(snakeImg, 950, 455, 255, 255);
+    
+    requestAnimationFrame(drawSnake); 
+}
+
+function drawObstacle() {
+       ctx.beginPath();
+       ctx.arc(xo, yo, 15, 0, 2 * Math.PI);
+       ctx.fillStyle = "#8B0000";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+       requestAnimationFrame(drawObstacle); 
+       
+       xo -= dx;
+       yo -= dy;
+
+       if (Math.abs(xo) <= 1) {
+           xo = 950;
+       }
 }
 
 //This function constructs the brick walls
@@ -92,7 +115,6 @@ function drawGround() {
        ctx.fill();
        ctx.stroke();
        ctx.closePath();
-
 
     requestAnimationFrame(drawGround);
 }
@@ -184,6 +206,10 @@ function drawHumptyDumpty() {
     else if (Math.abs(yg) >= 600) 
     {
         yg = 600;
+    }
+    
+    if (xo > xg && xo < ) {
+        yo = 200;
     }
     
    requestAnimationFrame(drawHumptyDumpty);
@@ -356,7 +382,10 @@ function draw() {
     drawBush();
     drawGround();
     drawHumptyDumpty();
+    drawSnake();
+    drawObstacle();
 }
 
 requestAnimationFrame(draw);
 
+});
