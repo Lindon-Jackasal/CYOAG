@@ -90,7 +90,7 @@ function drawObstacle() {
        }, 2000);
        
        //xo yo = obstacle || xg yg = Humpty Dumpty 85 - width, 110 - height
-       //The below code detects if the obstacle/circle is touching Humpty Dumpty\the ellipse 
+       //The below code detects if the obstacle/circle is touching Humpty Dumpty/the ellipse 
        if (xg < xo + 10 && xg + 85 > xo && yg < yo + 115 && yg + 110 > yo){
            document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
        }
