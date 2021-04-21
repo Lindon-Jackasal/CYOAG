@@ -1,6 +1,19 @@
+var instructionsBar = true;
+
+function closeInstructionsBar() {
+      var im = document.getElementById("instructMenu");
+      
+      if (im.style.display === "block") {
+            im.style.display = "none";
+            instructionsBar = false;
+      }
+}
+
 //The image needs to be preloaded, in order for canvas to draw/display it 
 var snakeImg = document.createElement('img');
+var goldImg = document.createElement('img');
 snakeImg.src = '../../myImages/snake.png';
+goldImg.src = '../../myImages/gold.gif';
 window.addEventListener('load', function(){ 
 
 var canvas = document.getElementById("battleTheSnake");
@@ -63,6 +76,12 @@ function drawSnake() {
     requestAnimationFrame(drawSnake); 
 }
 
+function drawGold() {
+    ctx.drawImage(goldImg, 1220, 535, 255, 185);
+    
+    requestAnimationFrame(drawGold); 
+}
+
 function drawObstacle() {
        ctx.beginPath();
        ctx.arc(xo, yo, 15, 0, 2 * Math.PI);
@@ -77,35 +96,38 @@ function drawObstacle() {
        ctx.fill();
        ctx.stroke();
        ctx.closePath();
-              
+           
        requestAnimationFrame(drawObstacle); 
+       
+       if (instructionsBar === false) { 
+            xo -= dox;
+            yo -= doy;
+       
+            //Wait two (2) seconds before allowing the 2nd obstacle to move
+            setTimeout(function(){
+                    xob -= dx;
+                    yob -= dy;
+            }, 2000);
+       
+            //xo yo = obstacle || xg yg = Humpty Dumpty 85 - width, 110 - height
+            //The below code detects if the obstacle/circle is touching Humpty Dumpty/the ellipse 
+            if (xg < xo + 10 && xg + 85 > xo && yg < yo + 115 && yg + 110 > yo){
+                document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
+             }
+            else if (xg < xob + 10 && xg + 85 > xob && yg < yob + 115 && yg + 110 > yob){
+                document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
+            }          
 
-       xo -= dox;
-       yo -= doy;
+            //Reset the obstacles/circles to their default position
+            if (Math.abs(xo) <= 1) {
+                xo = 950;
+                yo = 510;
+                doy = 0.2;
+            }
        
-       //Wait two (2) seconds before allowing the 2nd obstacle to move
-       setTimeout(function(){
-            xob -= dx;
-            yob -= dy;
-       }, 2000);
-       
-       //xo yo = obstacle || xg yg = Humpty Dumpty 85 - width, 110 - height
-       //The below code detects if the obstacle/circle is touching Humpty Dumpty/the ellipse 
-       if (xg < xo + 10 && xg + 85 > xo && yg < yo + 115 && yg + 110 > yo){
-           document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
-       }
-       else if (xg < xob + 10 && xg + 85 > xob && yg < yob + 115 && yg + 110 > yob){
-           document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
-       }          
-
-       if (Math.abs(xo) <= 1) {
-           xo = 950;
-           yo = 510;
-           doy = 0.2;
-       }
-       
-       if (Math.abs(xob) <= 1) {
-           xob = 950;
+            if (Math.abs(xob) <= 1) {
+                xob = 950;
+            }
        }
 }
 
@@ -239,8 +261,7 @@ function drawHumptyDumpty() {
     else if (Math.abs(yg) >= 600) 
     {
         yg = 600;
-    }
-    
+    } 
     
    requestAnimationFrame(drawHumptyDumpty);
 }
@@ -414,6 +435,7 @@ function draw() {
     drawHumptyDumpty();
     drawSnake();
     drawObstacle();
+    drawGold();
 }
 
 requestAnimationFrame(draw);
