@@ -24,6 +24,10 @@ var dx = 1.2;
 var dy = 0;
 var xo = 950;
 var yo = 510;
+var dox = 1.2;
+var doy = 0.2;
+var xob = 950;
+var yob= 510;
 var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
@@ -66,13 +70,42 @@ function drawObstacle() {
        ctx.fill();
        ctx.stroke();
        ctx.closePath();
-       requestAnimationFrame(drawObstacle); 
        
-       xo -= dx;
-       yo -= dy;
+       ctx.beginPath();
+       ctx.arc(xob, yob, 15, 0, 2 * Math.PI);
+       ctx.fillStyle = "#8B0000";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+              
+       requestAnimationFrame(drawObstacle); 
+
+       xo -= dox;
+       yo -= doy;
+       
+       //Wait two (2) seconds before allowing the 2nd obstacle to move
+       setTimeout(function(){
+            xob -= dx;
+            yob -= dy;
+       }, 2000);
+       
+       //xo yo = obstacle || xg yg = Humpty Dumpty 85 - width, 110 - height
+       //The below code detects if the obstacle/circle is touching Humpty Dumpty/the ellipse 
+       if (xg < xo + 10 && xg + 85 > xo && yg < yo + 115 && yg + 110 > yo){
+           document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
+       }
+       else if (xg < xob + 10 && xg + 85 > xob && yg < yob + 115 && yg + 110 > yob){
+           document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
+       }          
 
        if (Math.abs(xo) <= 1) {
            xo = 950;
+           yo = 510;
+           doy = 0.2;
+       }
+       
+       if (Math.abs(xob) <= 1) {
+           xob = 950;
        }
 }
 
