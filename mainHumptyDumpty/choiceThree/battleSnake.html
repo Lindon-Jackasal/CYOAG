@@ -7,16 +7,24 @@
 </head>
 <body>
 
-<h1 id="name">Player's Name:</h1>
+
+
 
 <div id="instructMenu" style="display: block;">
     <h1 id="hd1" style="font-size: 22px;">Oh No! A snake is in the way of the gold! Humpty Dumpty will have to defeat the Snake in order to reach the gold!</h1>
     <h2 id="hd2" style="font-size: 18px;"><u>How to Defeat the Snake:</u></h2>
         <p>-Press the "Up" or "Down" arrows to move Humpty Dumpty</p>
-        <p>-Dodge the Snake's attacks until it's energy runs out!</p>
+        <p>-Dodge the Snake's attacks until its energy runs out!</p>
     <img id="hdwel" src="../../myImages/humptydumwelcome.jpg" alt="Humpty Dumpty" width="280" height="230" style="display: block; margin-left: 25%; opacity: 1;">
     <br>
     <button id="btnInstrucCon" onclick="closeInstructionsBar()">Click here to continue</button>
+</div>
+
+<div id="hit" style="display: none;">
+    <h1 id="hd1hit" style="font-size: 22px;">Oh No! Humpty Dumpty got hit by one of the Snake's attack!</h1>
+    <h2 id="hd2hit" style="font-size: 18px;">Tip: Use the "Up" (↑) or "Down" (↓) arrows to save Humpty Dumpty from the attacks.</h2>
+    <br>
+    <button id="btnStartOver" onclick="document.location='battleSnake.html'">Try Again</button>
 </div>
 
 <canvas id="battleTheSnake">

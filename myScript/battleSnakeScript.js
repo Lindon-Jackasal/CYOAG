@@ -1,4 +1,5 @@
 var instructionsBar = true;
+var hitBar = false;
 
 function closeInstructionsBar() {
       var im = document.getElementById("instructMenu");
@@ -45,6 +46,8 @@ var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
 var downPressed = false;
+var snakeEnergy = 10;
+var fM = document.getElementById("hit");
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
@@ -71,18 +74,20 @@ function keyUpHandler(event) {
 }
 
 function drawSnake() {
-    ctx.drawImage(snakeImg, 950, 455, 255, 255);
-    
+
+if (snakeEnergy > 0) {
+    ctx.drawImage(snakeImg, 950, 455, 255, 255); 
     requestAnimationFrame(drawSnake); 
+    }
 }
 
 function drawGold() {
     ctx.drawImage(goldImg, 1220, 535, 255, 185);
-    
     requestAnimationFrame(drawGold); 
 }
 
 function drawObstacle() {
+if (snakeEnergy > 0) {
        ctx.beginPath();
        ctx.arc(xo, yo, 15, 0, 2 * Math.PI);
        ctx.fillStyle = "#8B0000";
@@ -96,10 +101,13 @@ function drawObstacle() {
        ctx.fill();
        ctx.stroke();
        ctx.closePath();
-           
-       requestAnimationFrame(drawObstacle); 
        
-       if (instructionsBar === false) { 
+       ctx.font = "30px Arial";
+       ctx.strokeText("Energy: " + snakeEnergy, 1000, 460);
+           
+       requestAnimationFrame(drawObstacle);
+       
+       if (instructionsBar === false && hitBar === false) { 
             xo -= dox;
             yo -= doy;
        
@@ -112,22 +120,30 @@ function drawObstacle() {
             //xo yo = obstacle || xg yg = Humpty Dumpty 85 - width, 110 - height
             //The below code detects if the obstacle/circle is touching Humpty Dumpty/the ellipse 
             if (xg < xo + 10 && xg + 85 > xo && yg < yo + 115 && yg + 110 > yo){
-                document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
+                    if (fM.style.display === "none") {
+                        fM.style.display = "block";
+                        hitBar = true;
+                    }
              }
             else if (xg < xob + 10 && xg + 85 > xob && yg < yob + 115 && yg + 110 > yob){
-                document.getElementById("name").innerHTML = "Welcome to Humpty Dumpty, ";
+                    if (fM.style.display === "none") {
+                        fM.style.display = "block";
+                        hitBar = true;
+                    }
             }          
 
             //Reset the obstacles/circles to their default position
-            if (Math.abs(xo) <= 1) {
+            while (Math.abs(xo) <= 1) {
                 xo = 950;
                 yo = 510;
                 doy = 0.2;
+                snakeEnergy -= 10;
             }
        
-            if (Math.abs(xob) <= 1) {
-                xob = 950;
+            while (Math.abs(xob) <= 1) {
+                 xob = 950;
             }
+       }
        }
 }
 
@@ -247,6 +263,8 @@ function drawHumptyDumpty() {
         ctx.stroke();
         ctx.restore();
 
+    if (snakeEnergy > 0) {
+
     if(downPressed) {
         yg +=2.5;
     }
@@ -262,6 +280,13 @@ function drawHumptyDumpty() {
     {
         yg = 600;
     } 
+    }
+    else if (snakeEnergy === 0) {
+            setTimeout(function(){
+                xg = 1100;
+                yg = 610;
+            }, 3000);
+    }
     
    requestAnimationFrame(drawHumptyDumpty);
 }
