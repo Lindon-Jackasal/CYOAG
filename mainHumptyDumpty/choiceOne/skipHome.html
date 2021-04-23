@@ -7,9 +7,18 @@
 </head>
 <body>
 
-<ul>
-    <li><button id="btnMenu">MAIN MENU</button></li>
+<ul style="z-index: 1;">
+    <li><button id="btnMenu" onclick="showOrHideMenu()">MAIN MENU</button></li>
 </ul>
+
+<div id="mainMenu">
+    <h1>MAIN MENU</h1>
+    <h2>Please choose your option below:</h2>
+    <div class="flex-container">
+        <div class="flex-item-left"><button id="btnCloseMenu" class="buttonintro" onclick="showOrHideMenu()">Cancel</button></div>
+        <div class="flex-item-right"><button class="buttonintro" onclick="document.location='../../index.html'">Quit Game</button></div>
+    </div>
+</div>
 
 <div id="hdHomeDiv" class="homeDivMsg">
     <h1 style="font-size: 19px;">Humpty Dumpty goes home.</h1>

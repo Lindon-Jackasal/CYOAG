@@ -1,3 +1,29 @@
+window.onload = function(){
+        document.getElementById("mainMenu").style.display='none';
+};
+
+function showOrHideMenu() {
+     var mm = document.getElementById("mainMenu");
+     var cc = document.getElementById("btnMenu");
+     var canv = document.getElementById("hdFall");
+     var choicesD = document.getElementById("humptyDFall");
+     
+      if (mm.style.display === "none" || canv.style.display === "inline-block") {
+            canv.style.display = "none";
+            choicesD.style.display = "none";
+            mm.style.display = "block";
+            cc.style.background = "white";
+            cc.style.color = "black";
+      }
+      else if (mm.style.display === "block" || canv.style.display === "none") {
+            mm.style.display = "none";
+            canv.style.display = "inline-block";
+            choicesD.style.display = "inline-block";
+            cc.style.background = "#4CAF50";
+            cc.style.color = "white";
+      }
+}
+
 //The image needs to be preloaded, in order for canvas to draw/display it 
 var eggImg = document.createElement('img');
 var kingsmen1Img = document.createElement('img');

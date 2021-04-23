@@ -1,3 +1,29 @@
+window.onload = function(){
+        document.getElementById("mainMenu").style.display='none';
+};
+
+function showOrHideMenu() {
+     var mm = document.getElementById("mainMenu");
+     var cc = document.getElementById("btnMenu");
+     var canv = document.getElementById("choiceTwoCanvas");
+     var choicesD = document.getElementById("hdHomeD");
+     
+      if (mm.style.display === "none" || canv.style.display === "inline-block") {
+            canv.style.display = "none";
+            choicesD.style.display = "none";
+            mm.style.display = "block";
+            cc.style.background = "white";
+            cc.style.color = "black";
+      }
+      else if (mm.style.display === "block" || canv.style.display === "none") {
+            mm.style.display = "none";
+            canv.style.display = "inline-block";
+            choicesD.style.display = "inline-block";
+            cc.style.background = "#4CAF50";
+            cc.style.color = "white";
+      }
+}
+
 //The image needs to be preloaded, in order for canvas to draw/display it 
 var peopleImg = document.createElement('img');
 peopleImg.src = '../../myImages/people.png';
@@ -19,7 +45,7 @@ var y = 100;
 var xb = -950;
 var yb = 300;
 var xc = 1350;
-var yc = 420;
+var yc = 630;
 var dx = 1.2;
 var dy = 0;
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -166,7 +192,7 @@ function drawBush() {
        ctx.closePath();
 
        ctx.beginPath();
-       ctx.rect(0, 290, 130, 220);
+       ctx.rect(0, 290, 130, 390);
        ctx.fillStyle = "#BF8E02";
        ctx.fill();
        ctx.stroke();
