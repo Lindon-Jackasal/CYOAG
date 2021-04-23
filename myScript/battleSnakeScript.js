@@ -1,6 +1,7 @@
 var instructionsBar = true;
 var hitBar = false;
 
+//Function used to close to instructions bar
 function closeInstructionsBar() {
       var im = document.getElementById("instructMenu");
       
@@ -46,7 +47,7 @@ var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
 var downPressed = false;
-var snakeEnergy = 10;
+var snakeEnergy = 100;
 var fM = document.getElementById("hit");
 var winM = document.getElementById("win");
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -75,10 +76,9 @@ function keyUpHandler(event) {
 }
 
 function drawSnake() {
-
-if (snakeEnergy > 0) {
-    ctx.drawImage(snakeImg, 950, 455, 255, 255); 
-    requestAnimationFrame(drawSnake); 
+    if (snakeEnergy > 0) {
+        ctx.drawImage(snakeImg, 950, 455, 255, 255); 
+        requestAnimationFrame(drawSnake); 
     }
 }
 
@@ -88,7 +88,7 @@ function drawGold() {
 }
 
 function drawObstacle() {
-if (snakeEnergy > 0) {
+    if (snakeEnergy > 0) {
        ctx.beginPath();
        ctx.arc(xo, yo, 15, 0, 2 * Math.PI);
        ctx.fillStyle = "#8B0000";
@@ -135,17 +135,17 @@ if (snakeEnergy > 0) {
 
             //Reset the obstacles/circles to their default position
             while (Math.abs(xo) <= 1) {
-                xo = 950;
-                yo = 510;
-                doy = 0.2;
-                snakeEnergy -= 10;
+                 xo = 950;
+                 yo = 510;
+                 doy = 0.2;
+                 snakeEnergy -= 10;
             }
        
             while (Math.abs(xob) <= 1) {
                  xob = 950;
             }
        }
-       }
+    }
 }
 
 //This function draws the ground, together with the stones using canvas
@@ -193,30 +193,29 @@ function drawGround() {
 
 //This function creates an ellipse/Humpty Dumpty
 function drawHumptyDumpty() {
-    
-    //Draw an ellipse
-    ctx.beginPath();
-    ctx.moveTo(xg, yg);
-    ctx.ellipse(12 + xg, 0 + yg, 85, 110, Math.PI / 30, 0, 2 * Math.PI);
-    ctx.fillStyle = '#FAE5D3';
-    ctx.fill();
-    //ctx.stroke();
+       //Draw an ellipse
+       ctx.beginPath();
+       ctx.moveTo(xg, yg);
+       ctx.ellipse(12 + xg, 0 + yg, 85, 110, Math.PI / 30, 0, 2 * Math.PI);
+       ctx.fillStyle = '#FAE5D3';
+       ctx.fill();
+       //ctx.stroke();
 
-   //First Eyebrow
-   ctx.beginPath();
-   ctx.lineWidth = 1;
-   ctx.moveTo(xg - 35, yg - 45);
-   ctx.quadraticCurveTo(xg - 10, yg - 80, xg + 5, yg - 45);
-   ctx.stroke();
-   ctx.restore();
+       //First Eyebrow
+       ctx.beginPath();
+       ctx.lineWidth = 1;
+       ctx.moveTo(xg - 35, yg - 45);
+       ctx.quadraticCurveTo(xg - 10, yg - 80, xg + 5, yg - 45);
+       ctx.stroke();
+       ctx.restore();
 
-   //Second Eyebrow
-   ctx.beginPath();
-   ctx.lineWidth = 1;
-   ctx.moveTo(xg + 75, yg - 45);
-   ctx.quadraticCurveTo(xg + 55, yg - 80, xg + 35, yg - 45);
-   ctx.stroke();
-   ctx.restore();
+       //Second Eyebrow
+       ctx.beginPath();
+       ctx.lineWidth = 1;
+       ctx.moveTo(xg + 75, yg - 45);
+       ctx.quadraticCurveTo(xg + 55, yg - 80, xg + 35, yg - 45);
+       ctx.stroke();
+       ctx.restore();
 
        //Eyes
        ctx.beginPath();

@@ -158,6 +158,7 @@ input[type=text] {
 
 #btnCon:hover {
   background-color: #45a049;
+  cursor: url(Turquoise15.cur), auto;/* http://www.rw-designer.com/cursor-set/turquoise */
 }
 
 #btnC2 {
@@ -175,7 +176,8 @@ input[type=text] {
 }
 
 #btnC2:hover {
-  background-color: #45a049;
+    background-color: #45a049;
+    cursor: url(Turquoise15.cur), auto;/* http://www.rw-designer.com/cursor-set/turquoise */
 }
 
 #welcome {
