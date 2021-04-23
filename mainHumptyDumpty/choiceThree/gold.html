@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../../myCSS/myStyle.css" type="text/css"/>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div style="border-style: dotted; width: 600px; margin-top: 100px;">
-    <p>Humpty Dumpty stumbles upon a deadly obstacle!</p>
-    <p>What should he do next?</p>
-</div>
 
-<button id="btnGold" onclick="document.location='battleSnake.html'">Continue for the Gold!</button>
-<button id="btnHome" onclick="document.location='goHome.html'">Run Away!...Go Home Now!</button>
+<ul>
+    <li><button id="btnMenu">MAIN MENU</button></li>
+</ul>
+
+<div id="goldDiv" class="homeDivMsg">
+    <h1 style="font-size: 22px;">Humpty Dumpty stumbles upon gold, however, there is a deadly obstacle in the way of the gold!</h1>
+    <h2 style="font-size: 18px;">What should he do next?</h2>
+    <div class="flex-container">
+        <div class="flex-item-left"><button id="btnGold" class="buttonintro" onclick="document.location='battleSnake.html'">Go for the Gold!</button></div>
+        <div class="flex-item-right"><button id="btnHome" class="buttonintro" onclick="document.location='goHome.html'">Run Away!</button></div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../../myCSS/myStyle.css" type="text/css"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Humpty Dumpty</title>
 </head>
 <body>
 
-<div style="border-style: dotted; width: 600px; margin-top: 100px;">
-    <p>Humpty Dumpty Listens to the Advice of the People</p>
+<ul>
+    <li><button id="btnMenu">MAIN MENU</button></li>
+</ul>
+
+<div id="hdHomeD" class="homeDivMsg">
+    <h1 style="font-size: 19px;">Humpty Dumpty listens to the advice of the People and stopped skipping around.</h1>
+    <br>
+    <button class="buttonintro" onclick="document.location='returnHome.html'">Continue</button>
 </div>
 
-<button id="btnHome" onclick="document.location='returnHome.html'">Click here to continue...</button>
+<canvas id="choiceTwoCanvas">
+    Your browser does not support the HTML canvas tag.
+</canvas>
+
+<script src="../../myScript/choiceTwoScript.js">
+</script>
 
 </body>
 </html>

@@ -13,9 +13,11 @@
 
 <div id="mainMenu">
     <h1>MAIN MENU</h1>
-    <p>This is some text in a div element.</p>
-    <button id="btnCloseMenu" onclick="showOrHideMenu()">Cancel</button>
-    <button class="quitBtn" onclick="document.location='../index.html'">Quit Game</button>
+    <h2>Please choose your option below:</h2>
+    <div class="flex-container">
+        <div class="flex-item-left"><button id="btnCloseMenu" class="buttonintro" onclick="showOrHideMenu()">Cancel</button></div>
+        <div class="flex-item-right"><button class="buttonintro" onclick="document.location='../index.html'">Quit Game</button></div>
+    </div>
 </div>
 
 <div id="playerName" style="display: block;">
@@ -26,17 +28,18 @@
         <button id="btnC2" onclick="showmyIntroductionCanvas()">Continue</button>
 </div>
 
-
-<div style="border-style: dotted; width: 600px; margin-top: 100px;">
-    <p>It was a bright and sunny day. Humpty Dumpty was skipping around as usual.</p>
-    <p>What should he do next?</p>
+<div id="introChoices" style="display: none;">
+    <h1 style="font-size: 22px;">It was a bright and sunny day. Humpty Dumpty was skipping around as usual.</h1>
+    <h2 style="font-size: 18px;">What should he do next?</h2>
+    <div class="flex-container">
+        <div class="flex-item-left"><button id="btnSkipping" class="buttonintro" onclick="fChoice()">Continue Skipping</button></div>
+        <div class="flex-item-right"><button id="btnListen" class="buttonintro" onclick="sChoice()">Listen to the Advice of the People</button></div>
+    </div>
+    <div class="flex-container">
+        <div class="flex-item-right"><button id="btnForest" class="buttonintro" onclick="tChoice()">Go for a Walk in the Forest</button></div>
+    </div>
+    <div><button id="btnContinue" class="btnConChoice">Click Here to Continue</button></div>
 </div>
-
-<button id="btnSkipping" onclick="fChoice()">Continue Skipping</button>
-<button id="btnListen" onclick="sChoice()">Listen to the Advice of the People</button>
-<button id="btnForest" onclick="tChoice()">Go for a Walk in the Forest</button>
-<button id="btnContinue" class="btnConChoice">Click Here to Continue</button>
-
 
 <canvas id="myIntroduction">
     Your browser does not support the HTML canvas tag.

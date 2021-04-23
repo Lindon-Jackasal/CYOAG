@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../../myCSS/myStyle.css" type="text/css"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Humpty Dumpty</title>
 </head>
 <body>
-<div style="border-style: dotted; width: 600px; margin-top: 100px;">
-    <p>Humpty Dumpty stumbles upon a great wall</p>
-    <p>What should he do next?</p>
+
+<ul>
+    <li><button id="btnMenu">MAIN MENU</button></li>
+</ul>
+
+<div id="theGreatWallDiv">
+    <h1 style="font-size: 22px;">Humpty Dumpty stumbles upon a great wall.</h1>
+    <h2 style="font-size: 18px;">What should he do next?</h2>
+    <div class="flex-container">
+        <div class="flex-item-left"><button id="btnFall" class="buttonintro" onclick="document.location='humptyDumptyFall.html'">Climb the Wall</button></div>
+        <div class="flex-item-right"><button id="btnSkipHome" class="buttonintro" onclick="document.location='skipHome.html'">Go Home</button></div>
+    </div>
 </div>
 
-<button id="btnFall" onclick="document.location='humptyDumptyFall.html'">Climb the Wall</button>
-<button id="btnSkipHome" onclick="document.location='skipHome.html'">Ignore the Wall and Skip Home</button>
+<canvas id="hdWall">
+    Your browser does not support the HTML canvas tag.
+</canvas>
+
+<script src="../../myScript/theGreatWallScript.js">
+</script>
 
 </body>
 </html>

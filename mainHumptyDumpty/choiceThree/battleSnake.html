@@ -3,12 +3,13 @@
 <head>
     <link rel="stylesheet" href="../../myCSS/myStyle.css" type="text/css"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Humpty Dumpty</title>
 </head>
 <body>
 
-
-
+<ul>
+    <li><button id="btnMenu">MAIN MENU</button></li>
+</ul>
 
 <div id="instructMenu" style="display: block;">
     <h1 id="hd1" style="font-size: 22px;">Oh No! A snake is in the way of the gold! Humpty Dumpty will have to defeat the Snake in order to reach the gold!</h1>
@@ -25,6 +26,13 @@
     <h2 id="hd2hit" style="font-size: 18px;">Tip: Use the "Up" (↑) or "Down" (↓) arrows to save Humpty Dumpty from the attacks.</h2>
     <br>
     <button id="btnStartOver" onclick="document.location='battleSnake.html'">Try Again</button>
+</div>
+
+<div id="win" style="display: none;">
+    <h1 id="hd1win" style="font-size: 22px;">Humpty Dumpty successfully dodged all of the Snake's attacks to get to the gold.</h1>
+    <h1 id="hd2win" style="font-size: 15px;">Humpty Dumpty is now rich!</h1>
+    <br>
+    <button id="btnWin" onclick="document.location='../../index.html'">Play Again</button>
 </div>
 
 <canvas id="battleTheSnake">
