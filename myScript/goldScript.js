@@ -1,148 +1,11 @@
-var divPlayerName = true;
-var myIntroCanvas = false;
-var myIntroChoices = false;
-var choiceOne = false;
-var choiceTwo = false;
-var choiceThree = false;
+//The image needs to be preloaded, in order for canvas to draw/display it 
+var snakeImg = document.createElement('img');
+var goldImg = document.createElement('img');
+snakeImg.src = '../../myImages/snake.png';
+goldImg.src = '../../myImages/gold.gif';
+window.addEventListener('load', function(){ 
 
-window.onload = function(){
-        document.getElementById("mainMenu").style.display='none';
-};
-
-//Transition Effect on the Body of the page on load
-document.body.className = 'fade';
-
-document.addEventListener("DOMContentLoaded", () => {
-      window.setTimeout(function() {
-        document.body.className = '';
-      }, 230);
-});
-
-function showOrHideMenu() {
-     var m = document.getElementById("mainMenu");
-     var pn = document.getElementById("playerName");
-     var c = document.getElementById("btnMenu");
-     var myIntro = document.getElementById("myIntroduction");
-
-      if (m.style.display === "none" && pn.style.display === "block") {
-            pn.style.display = "none";
-            m.style.display = "block";
-            c.style.background = "white";
-            c.style.color = "black";
-      }
-      else if (m.style.display === "none" && myIntro.style.display === "inline-block") {
-            myIntro.style.display = "none";
-            m.style.display = "block";
-            c.style.background = "white";
-            c.style.color = "black";
-
-      }
-      else if (myIntroCanvas === true) {
-            m.style.display = "none";
-            myIntro.style.display = "inline-block";
-            c.style.background = "#4CAF50";
-            c.style.color = "white";
-      }
-      else if (divPlayerName === true) {
-            m.style.display = "none";
-            pn.style.display = "block";
-            c.style.background = "#4CAF50";
-            c.style.color = "white";
-      }
-   }
-
-function changeText() {
-        var input = document.getElementById("pname").value;
-        var inputextBox = document.getElementById("pname");
-        var btn1 = document.getElementById("btnCon");
-        var btn2 = document.getElementById("btnC2");
-        var hdw = document.getElementById("hdwel");
-
-        if (input.trim() === "") {
-            inputextBox.title = "Required!";
-            inputextBox.style.border = "4px solid red";
-            divPlayerName = true;
-            myIntroCanvas = false;
-
-        } else {
-            document.getElementById("namep").innerHTML = "Welcome to Humpty Dumpty, " + input + "!";
-            inputextBox.style.display = "none";
-            btn1.style.display = "none";
-            btn2.style.display = "block";
-            hdw.style.display = "block";
-            divPlayerName = true;
-            myIntroCanvas = false;
-        }
-}
-
-function showmyIntroductionCanvas() {
-
-        var mI = document.getElementById("myIntroduction");
-        var pN = document.getElementById("playerName");
-        var iC = document.getElementById("introChoices");
-
-        if (pN.style.display === "block") {
-            mI.style.display = "inline-block";
-            iC.style.display = "block";
-            pN.style.display = "none";
-            divPlayerName = false;
-            myIntroCanvas = true;
-            myIntroChoices = true;
-        }
-}
-
-function fChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceOne/theGreatWall.html';
-        }
-        choiceOne = true;
-}
-
-function sChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceTwo/choiceTwo.html';
-        }
-        choiceTwo = true;
-}
-
-function tChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceThree/gold.html';
-        }
-        choiceThree = true;
-}
-
-//_______________________________________________________________________//
-
-
-var canvas = document.getElementById("myIntroduction");
+var canvas = document.getElementById("gold");
 var ctx = canvas.getContext("2d");
 
        //canvas.width = canvas.offsetWidth;
@@ -152,7 +15,7 @@ var ctx = canvas.getContext("2d");
        canvas.height = 760;
 
 var xg = 250;
-var yg = 550;
+var yg = 610;
 var x = -150;
 var y = 100;
 var xb = -950;
@@ -164,8 +27,17 @@ var dy = 0;
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
+function drawSnake() {
+    ctx.drawImage(snakeImg, 950, 455, 255, 255); 
+    requestAnimationFrame(drawSnake); 
+}
 
-//This function constructs the brick walls
+function drawGold() {
+    ctx.drawImage(goldImg, 1220, 535, 255, 185);
+    requestAnimationFrame(drawGold); 
+}
+
+//This function draws the ground, together with the stones using canvas
 function drawGround() {
        //Ground
        ctx.beginPath();
@@ -205,12 +77,12 @@ function drawGround() {
        ctx.stroke();
        ctx.closePath();
 
-
     requestAnimationFrame(drawGround);
 }
 
 //This function creates an ellipse/Humpty Dumpty
 function drawHumptyDumpty() {
+    
     //Draw an ellipse
     ctx.beginPath();
     ctx.moveTo(xg, yg);
@@ -280,7 +152,7 @@ function drawHumptyDumpty() {
         ctx.quadraticCurveTo(xg + 15, yg + 55, xg - 25, yg + 30);
         ctx.stroke();
         ctx.restore();
-
+    
    requestAnimationFrame(drawHumptyDumpty);
 }
 
@@ -451,7 +323,10 @@ function draw() {
     drawBush();
     drawGround();
     drawHumptyDumpty();
+    drawSnake();
+    drawGold();
 }
 
 requestAnimationFrame(draw);
 
+});
