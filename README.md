@@ -1,5 +1,5 @@
-# SET08801 - Web Technologies - Lindon Jackasal
+# SET08801 - Web Technologies - Lindon L. Jackasal
 
 ## Choose Your Own Adventure Game (CYOAG)
 
-https://lindon-jackasal.github.io/CYOAG/
+URL of deployed site: https://lindon-jackasal.github.io/CYOAG/
