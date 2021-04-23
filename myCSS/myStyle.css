@@ -388,7 +388,7 @@ input[type=text] {
 }
 
 #flipcards{
-    border: 2px outset black;
+    border: none;
     background-color: white;
     text-align: center;
     margin-left: 5%;
