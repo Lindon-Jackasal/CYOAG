@@ -1,148 +1,13 @@
-var divPlayerName = true;
-var myIntroCanvas = false;
-var myIntroChoices = false;
-var choiceOne = false;
-var choiceTwo = false;
-var choiceThree = false;
+//The image needs to be preloaded, in order for canvas to draw/display it 
+var eggImg = document.createElement('img');
+var kingsmen1Img = document.createElement('img');
+var horsesImg = document.createElement('img');
+kingsmen1Img.src = '../../myImages/kingsmen1.png';
+eggImg.src = '../../myImages/egg.png';
+horsesImg.src = '../../myImages/horse1.png';
+window.addEventListener('load', function(){ 
 
-window.onload = function(){
-        document.getElementById("mainMenu").style.display='none';
-};
-
-//Transition Effect on the Body of the page on load
-document.body.className = 'fade';
-
-document.addEventListener("DOMContentLoaded", () => {
-      window.setTimeout(function() {
-        document.body.className = '';
-      }, 230);
-});
-
-function showOrHideMenu() {
-     var m = document.getElementById("mainMenu");
-     var pn = document.getElementById("playerName");
-     var c = document.getElementById("btnMenu");
-     var myIntro = document.getElementById("myIntroduction");
-
-      if (m.style.display === "none" && pn.style.display === "block") {
-            pn.style.display = "none";
-            m.style.display = "block";
-            c.style.background = "white";
-            c.style.color = "black";
-      }
-      else if (m.style.display === "none" && myIntro.style.display === "inline-block") {
-            myIntro.style.display = "none";
-            m.style.display = "block";
-            c.style.background = "white";
-            c.style.color = "black";
-
-      }
-      else if (myIntroCanvas === true) {
-            m.style.display = "none";
-            myIntro.style.display = "inline-block";
-            c.style.background = "#4CAF50";
-            c.style.color = "white";
-      }
-      else if (divPlayerName === true) {
-            m.style.display = "none";
-            pn.style.display = "block";
-            c.style.background = "#4CAF50";
-            c.style.color = "white";
-      }
-   }
-
-function changeText() {
-        var input = document.getElementById("pname").value;
-        var inputextBox = document.getElementById("pname");
-        var btn1 = document.getElementById("btnCon");
-        var btn2 = document.getElementById("btnC2");
-        var hdw = document.getElementById("hdwel");
-
-        if (input.trim() === "") {
-            inputextBox.title = "Required!";
-            inputextBox.style.border = "4px solid red";
-            divPlayerName = true;
-            myIntroCanvas = false;
-
-        } else {
-            document.getElementById("namep").innerHTML = "Welcome to Humpty Dumpty, " + input + "!";
-            inputextBox.style.display = "none";
-            btn1.style.display = "none";
-            btn2.style.display = "block";
-            hdw.style.display = "block";
-            divPlayerName = true;
-            myIntroCanvas = false;
-        }
-}
-
-function showmyIntroductionCanvas() {
-
-        var mI = document.getElementById("myIntroduction");
-        var pN = document.getElementById("playerName");
-        var iC = document.getElementById("introChoices");
-
-        if (pN.style.display === "block") {
-            mI.style.display = "inline-block";
-            iC.style.display = "block";
-            pN.style.display = "none";
-            divPlayerName = false;
-            myIntroCanvas = true;
-            myIntroChoices = true;
-        }
-}
-
-function fChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceOne/theGreatWall.html';
-        }
-        choiceOne = true;
-}
-
-function sChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceTwo/choiceTwo.html';
-        }
-        choiceTwo = true;
-}
-
-function tChoice() {
-    var btnS = document.getElementById("btnSkipping");
-    var btnL = document.getElementById("btnListen");
-    var btnF = document.getElementById("btnForest");
-    var btnCC = document.getElementById("btnContinue");
-
-        btnS.style.display = "none";
-        btnL.style.display = "none";
-        btnF.style.display = "none";
-        btnCC.style.display = "inline-block";
-        btnCC.onclick = function() {
-            location.href = 'choiceThree/gold.html';
-        }
-        choiceThree = true;
-}
-
-//_______________________________________________________________________//
-
-
-var canvas = document.getElementById("myIntroduction");
+var canvas = document.getElementById("hdFall");
 var ctx = canvas.getContext("2d");
 
        //canvas.width = canvas.offsetWidth;
@@ -151,8 +16,6 @@ var ctx = canvas.getContext("2d");
        canvas.width = 1540;
        canvas.height = 760;
 
-var xg = 250;
-var yg = 550;
 var x = -150;
 var y = 100;
 var xb = -950;
@@ -161,52 +24,56 @@ var xc = 1350;
 var yc = 420;
 var dx = 1.2;
 var dy = 0;
+var xg = 750;
+var yg = 570;
+var brickRowCount = 12;
+var brickColumnCount = 7;
+var brickWidth = 220;
+var brickHeight = 46;
+var brickPadding = 0.5;
+var brickOffsetTop = 205;
+var brickOffsetLeft = 0;
+var bricks = [];
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
+/* Adapted from: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Build_the_brick_field */
+for(var c=0; c<brickColumnCount; c++) {
+    bricks[c] = [];
+    for(var r=0; r<brickRowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0 };
+    }
+}
 
 //This function constructs the brick walls
-function drawGround() {
-       //Ground
-       ctx.beginPath();
-       ctx.rect(0, 680, 1540, 100);
-       ctx.fillStyle = "#9b7653";
-       ctx.fill();
-       ctx.stroke();
-       ctx.restore();
+function drawBricks() {
+    for(var c=0; c<brickColumnCount; c++) {
+        for(var r=0; r<brickRowCount; r++) {
+            var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+            var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            ctx.fillStyle = "#bd5858";
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
+        }
+    }
+    requestAnimationFrame(drawBricks);
+}
 
-       //Stones
-       ctx.beginPath();
-       ctx.arc(1100, 710, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "#BF8E02";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
+function drawEgg() {
+    ctx.drawImage(eggImg, 630, 645, 255, 110);
+    requestAnimationFrame(drawEgg); 
+}
 
-       ctx.beginPath();
-       ctx.arc(1108, 715, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "#BF8E02";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-       //Stones
-       ctx.beginPath();
-       ctx.arc(700, 720, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "#BF8E02";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-       ctx.beginPath();
-       ctx.arc(690, 725, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "#BF8E02";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-
-    requestAnimationFrame(drawGround);
+function drawKingsMenHorses() {
+    ctx.drawImage(kingsmen1Img, 780, 345, 380, 378);
+    ctx.drawImage(kingsmen1Img, 880, 385, 380, 378);
+    ctx.drawImage(horsesImg, 1180, 505, 350, 206);
+    requestAnimationFrame(drawKingsMenHorses); 
 }
 
 //This function creates an ellipse/Humpty Dumpty
@@ -250,21 +117,6 @@ function drawHumptyDumpty() {
        ctx.stroke();
        ctx.closePath();
 
-       //Pupils
-       ctx.beginPath();
-       ctx.arc(xg - 7, yg - 25, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "black";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
-       ctx.beginPath();
-       ctx.arc(xg + 63, yg - 25, 7, 0, 2 * Math.PI);
-       ctx.fillStyle = "black";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
        //Nose
         ctx.beginPath();
         ctx.lineWidth = 1;
@@ -277,17 +129,25 @@ function drawHumptyDumpty() {
         ctx.beginPath();
         ctx.lineWidth = 1;
         ctx.moveTo(xg + 55, yg + 30);
-        ctx.quadraticCurveTo(xg + 15, yg + 55, xg - 25, yg + 30);
+        ctx.quadraticCurveTo(xg + 15, yg + 35, xg - 25, yg + 30);
         ctx.stroke();
         ctx.restore();
 
-
-            if (choiceThree === true) {
-                setTimeout(function(){
-                xg = 930;
-                }, 1000);
-
-            }
+        //Crack var xg = 250; var yg = 550;
+        ctx.beginPath();
+        //ctx.moveTo(xg + 10, yg + 108);
+        ctx.lineTo(xg - 10, yg + 80);
+        ctx.lineTo(xg + 20, yg + 50);
+        ctx.lineTo(xg - 10, yg + 30);
+        ctx.lineTo(xg + 20, yg + 10);
+        ctx.lineTo(xg - 10, yg + 0);
+        ctx.lineTo(xg + 20, yg - 20);
+        ctx.lineTo(xg - 10, yg - 50);
+        ctx.lineTo(xg + 20, yg - 80);
+        ctx.lineTo(xg - 10, yg - 105);
+        ctx.lineWidth = 6;
+        ctx.stroke();
+        ctx.restore();
 
    requestAnimationFrame(drawHumptyDumpty);
 }
@@ -328,7 +188,7 @@ function drawBush() {
        ctx.bezierCurveTo(xd + 30, yd - 75, xd - 20, yd - 60, xd, yd);
        ctx.fillStyle = "#24C000";
        ctx.fill();
-       ctx.stroke();
+       //ctx.stroke();
        ctx.closePath();
 
        var xe = 50;
@@ -396,17 +256,8 @@ function drawBush() {
 }
 
 function drawClouds() {
-
-       //the sun
-       ctx.clearRect(0, 0, canvas.width, canvas.height);
-       ctx.beginPath();
-       ctx.arc(800, 150, 80, 0, 2 * Math.PI);
-       ctx.fillStyle = "yellow";
-       ctx.fill();
-       ctx.stroke();
-       ctx.closePath();
-
    //The first cloud
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
    ctx.beginPath();
    ctx.lineWidth = 1;
    ctx.moveTo(x, y);
@@ -420,8 +271,6 @@ function drawClouds() {
    ctx.fill();
    ctx.stroke();
    ctx.closePath();
-
-
    x += dx;
    y += dy;
 
@@ -454,12 +303,59 @@ requestAnimationFrame(drawClouds);
 
 }
 
+//This function draws the ground, together with the stones using canvas
+function drawGround() {
+       //Ground
+       ctx.beginPath();
+       ctx.rect(0, 620, 1540, 300);
+       ctx.fillStyle = "#9b7653";
+       ctx.fill();
+       ctx.stroke();
+       ctx.restore();
+
+       //Stones
+       ctx.beginPath();
+       ctx.arc(1100, 710, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "#BF8E02";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       ctx.beginPath();
+       ctx.arc(1108, 715, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "#BF8E02";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       //Stones
+       ctx.beginPath();
+       ctx.arc(700, 720, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "#BF8E02";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+       ctx.beginPath();
+       ctx.arc(690, 725, 7, 0, 2 * Math.PI);
+       ctx.fillStyle = "#BF8E02";
+       ctx.fill();
+       ctx.stroke();
+       ctx.closePath();
+
+    requestAnimationFrame(drawGround);
+}
+
 function draw() {
     drawClouds();
     drawBush();
+    drawBricks();
     drawGround();
+    drawEgg();
     drawHumptyDumpty();
+    drawKingsMenHorses();
 }
 
 requestAnimationFrame(draw);
 
+});

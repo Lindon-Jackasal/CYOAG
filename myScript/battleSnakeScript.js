@@ -48,6 +48,7 @@ var upPressed = false;
 var downPressed = false;
 var snakeEnergy = 10;
 var fM = document.getElementById("hit");
+var winM = document.getElementById("win");
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
@@ -147,7 +148,7 @@ if (snakeEnergy > 0) {
        }
 }
 
-//This function constructs the brick walls
+//This function draws the ground, together with the stones using canvas
 function drawGround() {
        //Ground
        ctx.beginPath();
@@ -285,7 +286,10 @@ function drawHumptyDumpty() {
             setTimeout(function(){
                 xg = 1100;
                 yg = 610;
-            }, 3000);
+                if (winM.style.display === "none") {
+                    winM.style.display = "block";
+                }
+            }, 2000);
     }
     
    requestAnimationFrame(drawHumptyDumpty);
