@@ -5,8 +5,8 @@ window.onload = function(){
 function showOrHideMenu() {
      var mm = document.getElementById("mainMenu");
      var cc = document.getElementById("btnMenu");
-     var canv = document.getElementById("choiceTwoCanvas");
-     var choicesD = document.getElementById("hdHomeD");
+     var canv = document.getElementById("gold");
+     var choicesD = document.getElementById("goldDiv");
      
       if (mm.style.display === "none" || canv.style.display === "inline-block") {
             canv.style.display = "none";
@@ -25,11 +25,13 @@ function showOrHideMenu() {
 }
 
 //The image needs to be preloaded, in order for canvas to draw/display it 
-var peopleImg = document.createElement('img');
-peopleImg.src = '../../myImages/people.png';
+var snakeImg = document.createElement('img');
+var goldImg = document.createElement('img');
+snakeImg.src = '../../myImages/snake.png';
+goldImg.src = '../../myImages/gold.gif';
 window.addEventListener('load', function(){ 
 
-var canvas = document.getElementById("choiceTwoCanvas");
+var canvas = document.getElementById("gold");
 var ctx = canvas.getContext("2d");
 
        //canvas.width = canvas.offsetWidth;
@@ -38,8 +40,8 @@ var ctx = canvas.getContext("2d");
        canvas.width = 1540;
        canvas.height = 760;
 
-var xg = 550;
-var yg = 620;
+var xg = 250;
+var yg = 610;
 var x = -150;
 var y = 100;
 var xb = -950;
@@ -51,9 +53,14 @@ var dy = 0;
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-function drawPeople() {
-    ctx.drawImage(peopleImg, 720, 355, 350, 350);
-    requestAnimationFrame(drawPeople); 
+function drawSnake() {
+    ctx.drawImage(snakeImg, 950, 455, 255, 255); 
+    requestAnimationFrame(drawSnake); 
+}
+
+function drawGold() {
+    ctx.drawImage(goldImg, 1220, 535, 255, 185);
+    requestAnimationFrame(drawGold); 
 }
 
 //This function draws the ground, together with the stones using canvas
@@ -342,7 +349,8 @@ function draw() {
     drawBush();
     drawGround();
     drawHumptyDumpty();
-    drawPeople();
+    drawSnake();
+    drawGold();
 }
 
 requestAnimationFrame(draw);

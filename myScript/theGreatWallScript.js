@@ -1,3 +1,29 @@
+window.onload = function(){
+        document.getElementById("mainMenu").style.display='none';
+};
+
+function showOrHideMenu() {
+     var mm = document.getElementById("mainMenu");
+     var cc = document.getElementById("btnMenu");
+     var canv = document.getElementById("hdWall");
+     var choicesD = document.getElementById("theGreatWallDiv");
+     
+      if (mm.style.display === "none" || canv.style.display === "inline-block") {
+            canv.style.display = "none";
+            choicesD.style.display = "none";
+            mm.style.display = "block";
+            cc.style.background = "white";
+            cc.style.color = "black";
+      }
+      else if (mm.style.display === "block" || canv.style.display === "none") {
+            mm.style.display = "none";
+            canv.style.display = "inline-block";
+            choicesD.style.display = "inline-block";
+            cc.style.background = "#4CAF50";
+            cc.style.color = "white";
+      }
+}
+
 var canvas = document.getElementById("hdWall");
 var ctx = canvas.getContext("2d");
 

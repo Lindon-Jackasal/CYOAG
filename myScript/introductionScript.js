@@ -1,6 +1,5 @@
 var divPlayerName = true;
 var myIntroCanvas = false;
-var myIntroChoices = false;
 var choiceOne = false;
 var choiceTwo = false;
 var choiceThree = false;
@@ -23,6 +22,7 @@ function showOrHideMenu() {
      var pn = document.getElementById("playerName");
      var c = document.getElementById("btnMenu");
      var myIntro = document.getElementById("myIntroduction");
+     var introC = document.getElementById("introChoices");
 
       if (m.style.display === "none" && pn.style.display === "block") {
             pn.style.display = "none";
@@ -30,16 +30,17 @@ function showOrHideMenu() {
             c.style.background = "white";
             c.style.color = "black";
       }
-      else if (m.style.display === "none" && myIntro.style.display === "inline-block") {
+      else if (m.style.display === "none" && myIntro.style.display === "inline-block" || introC.style.display === "inline-block") {
             myIntro.style.display = "none";
+            introC.style.display = "none";
             m.style.display = "block";
             c.style.background = "white";
             c.style.color = "black";
-
       }
       else if (myIntroCanvas === true) {
             m.style.display = "none";
             myIntro.style.display = "inline-block";
+            introC.style.display = "inline-block";
             c.style.background = "#4CAF50";
             c.style.color = "white";
       }
@@ -49,7 +50,7 @@ function showOrHideMenu() {
             c.style.background = "#4CAF50";
             c.style.color = "white";
       }
-   }
+}
 
 function changeText() {
         var input = document.getElementById("pname").value;
@@ -87,7 +88,6 @@ function showmyIntroductionCanvas() {
             pN.style.display = "none";
             divPlayerName = false;
             myIntroCanvas = true;
-            myIntroChoices = true;
         }
 }
 
@@ -140,7 +140,10 @@ function tChoice() {
 }
 
 //_______________________________________________________________________//
-
+//The image needs to be preloaded, in order for canvas to draw/display it 
+var peopleImg = document.createElement('img');
+peopleImg.src = '../myImages/people.png';
+window.addEventListener('load', function(){ 
 
 var canvas = document.getElementById("myIntroduction");
 var ctx = canvas.getContext("2d");
@@ -152,18 +155,17 @@ var ctx = canvas.getContext("2d");
        canvas.height = 760;
 
 var xg = 250;
-var yg = 550;
+var yg = 600;
 var x = -150;
 var y = 100;
 var xb = -950;
 var yb = 300;
 var xc = 1350;
-var yc = 420;
+var yc = 630;
 var dx = 1.2;
 var dy = 0;
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
 
 //This function constructs the brick walls
 function drawGround() {
@@ -207,6 +209,13 @@ function drawGround() {
 
 
     requestAnimationFrame(drawGround);
+}
+
+function drawPeople() {
+    ctx.drawImage(peopleImg, 720, 355, 350, 350);
+    ctx.font = "15px Arial";
+    ctx.strokeText("Stop Skipping, Humpty Dumpty! You will fall... Be Careful!", 700, 340);
+    requestAnimationFrame(drawPeople); 
 }
 
 //This function creates an ellipse/Humpty Dumpty
@@ -281,14 +290,6 @@ function drawHumptyDumpty() {
         ctx.stroke();
         ctx.restore();
 
-
-            if (choiceThree === true) {
-                setTimeout(function(){
-                xg = 930;
-                }, 1000);
-
-            }
-
    requestAnimationFrame(drawHumptyDumpty);
 }
 
@@ -308,13 +309,15 @@ function drawBush() {
        ctx.stroke();
        ctx.closePath();
 
+       //Tree trunk
        ctx.beginPath();
-       ctx.rect(0, 290, 130, 220);
+       ctx.rect(0, 290, 130, 390);
        ctx.fillStyle = "#BF8E02";
        ctx.fill();
        ctx.stroke();
        ctx.restore();
 
+       //Branches of the tree
        var xd = -50;
        var yd = 225;
        ctx.beginPath();
@@ -459,7 +462,9 @@ function draw() {
     drawBush();
     drawGround();
     drawHumptyDumpty();
+    drawPeople();
 }
 
 requestAnimationFrame(draw);
 
+});

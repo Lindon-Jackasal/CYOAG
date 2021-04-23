@@ -33,7 +33,7 @@ var y = 100;
 var xb = -950;
 var yb = 300;
 var xc = 1350;
-var yc = 420;
+var yc = 630;
 var dx = 1.2;
 var dy = 0;
 var xo = 950;
@@ -311,8 +311,9 @@ function drawBush() {
        ctx.stroke();
        ctx.closePath();
 
+       //Tree trunk
        ctx.beginPath();
-       ctx.rect(0, 290, 130, 220);
+       ctx.rect(0, 290, 130, 390);
        ctx.fillStyle = "#BF8E02";
        ctx.fill();
        ctx.stroke();
